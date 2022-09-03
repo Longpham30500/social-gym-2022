@@ -11,9 +11,8 @@ app.use(cors())
 app.use(cookieParser())
 
 
-app.get('/', (reg, res) => {
-    res.json({msg: "Hello"})
-})
+// Routes
+app.use('/api', require('./routes/authRouter'))
 
 const URI = process.env.MONGODB_URL
 mongoose.connect(URI, {
