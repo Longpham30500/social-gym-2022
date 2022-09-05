@@ -32,3 +32,6 @@ code {
   margin: auto;
 
 }
+
+/* -------- AUTH -------- */
+@import url("./styles/auth.css");
