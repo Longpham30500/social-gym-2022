@@ -1,11 +1,64 @@
-export const TYPES = {
-    AUTH: 'AUTH'
+import { GLOBALTYPES } from "./globalTypes"
+import { postDataAPI } from "../../utils/fetchData"
+
+
+
+export const login = (data) => async (dispatch) => {
+    try {
+        dispatch({ type: GLOBALTYPES.ALERT, payload: {loading: true} }) //thong bao
+        const res = await postDataAPI('login', data)
+        dispatch({ 
+            type: GLOBALTYPES.AUTH, 
+            payload: {
+                token: res.data.access_token,
+                user: res.data.user
+            } 
+        })
+
+        localStorage.setItem("firstLogin", true)
+        
+        dispatch({ 
+            type: GLOBALTYPES.ALERT, 
+            payload: {
+                success: res.data.msg 
+            } 
+        })
+
+    } catch (err) {
+        dispatch({ 
+            type: GLOBALTYPES.ALERT, 
+            payload: {
+                err: err.response.data.msg 
+            } 
+        })
+    }
 }
 
-export const login = (data) => {
-    try {
-           
-    } catch (err) {
-        
+export const refreshToken = () => async (dispatch) => {
+    const firstLogin = localStorage.getItem("firstLogin")
+    if(firstLogin){
+        dispatch({ type: GLOBALTYPES.ALERT, payload: {loading: true} })
+
+        try {
+            const res = await postDataAPI('refresh_token')
+            dispatch({ 
+                type: GLOBALTYPES.AUTH, 
+                payload: {
+                    token: res.data.access_token,
+                    user: res.data.user
+                } 
+            })
+
+            dispatch({ type: GLOBALTYPES.ALERT, payload: {} })
+
+        } catch (err) {
+            dispatch({ 
+                type: GLOBALTYPES.ALERT, 
+                payload: {
+                    err: err.response.data.msg 
+                } 
+            })
+            
+        }    
     }
 }
