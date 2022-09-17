@@ -7,14 +7,14 @@ import Toast from './Toast'
 const Notify = () => {
     const { alert } = useSelector(state => state)
     const dispatch = useDispatch()
-   
+   console.log(alert)
     return (
         <div>         
             {alert.loading && <Loading />}
 
             {
-                alert.error && 
-                <Toast msg={{title: 'Error', body: alert.error}} 
+                alert.err && 
+                <Toast msg={{title: 'Error', body: alert.err}} 
                 handleShow={() => dispatch({type: GLOBALTYPES.ALERT, payload: {}})} 
                 bgColor="bg-danger" />
             }

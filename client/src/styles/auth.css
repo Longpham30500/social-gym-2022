@@ -9,7 +9,7 @@
     max-width: 400px;
     width: 100%;
     border: 1px solid #ddd;
-    padding: 50px 25px;
+    padding: 0px 30px 0px 30px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -27,4 +27,8 @@
     transform: translateY(-50%);
     cursor: pointer;
     opacity: 0.5;
+}
+.form-control {
+    margin-top:-3px;
+    height: 30px;
 }
