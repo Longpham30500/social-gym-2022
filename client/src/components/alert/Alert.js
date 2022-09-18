@@ -7,7 +7,6 @@ import Toast from './Toast'
 const Notify = () => {
     const { alert } = useSelector(state => state)
     const dispatch = useDispatch()
-   console.log(alert)
     return (
         <div>         
             {alert.loading && <Loading />}
