@@ -44,6 +44,7 @@ const Search = () => {
         name="search"
         value={search}
         id="search"
+        title="Enter to Search"
         onChange={(e) =>
           setSearch(e.target.value.toLowerCase().replace(/ /g, ""))
         }
@@ -51,7 +52,7 @@ const Search = () => {
 
       <div className="search_icon" style={{ opacity: search ? 0 : 0.3 }}>
         <span className="material-icons">search</span>
-        <span>search</span>
+        <span>Enter to Search</span>
       </div>
 
       <div

@@ -42,7 +42,7 @@ const Menu = () => {
           </span>
 
           <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <Link className="dropdown-item" to={`/profile/$(auth.user._id)`}>
+            <Link className="dropdown-item" to={`/profile/${auth.user._id}`}>
               Profile
             </Link>
             <label
