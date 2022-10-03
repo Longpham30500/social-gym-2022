@@ -1,10 +1,12 @@
-import { GLOBALTYPES } from "./globalTypes";
+import { GLOBALTYPES, DeleteData } from "./globalTypes";
 import { getDataAPI, patchDataAPI } from "../../utils/fetchData"
 import { imageUpload } from "../../utils/imageUpload";
 
 export const PROFILE_TYPES = {
-    LOADING: 'LOADING',
-    GET_USER: 'GET_USER'
+    LOADING: 'LOADING_PROFILE',
+    GET_USER: 'GET_PROFILE_USER',
+    FOLLOW: 'FOLLOW',
+    UNFOLLOW: 'UNFOLLOW'
 }
 
 
@@ -46,7 +48,8 @@ export const updateProfileUser = ({userData, avatar, auth}) => async (dispatch) 
 
         if(avatar) media =  await imageUpload([avatar])
 
-        const res = await patchDataAPI("user", {
+        const res = await patchDataAPI("user", 
+        {
             ...userData,
             avatar: avatar ? media[0].url : auth.user.avatar
         }, auth.token)
@@ -71,6 +74,41 @@ export const updateProfileUser = ({userData, avatar, auth}) => async (dispatch) 
             payload: {err: err.response.data.msg}
         })
     }
+}
+
+export const follow = ({users, user, auth}) => async (dispatch) => {
+    let newUser = {...user, followers: [...user.followers, auth.user]}
+
+    dispatch({type: PROFILE_TYPES.FOLLOW, payload: newUser})
+
+    dispatch ({
+        type: GLOBALTYPES.AUTH, 
+        payload: {
+            ...auth,
+            user: {...auth.user, following: [...auth.user.following, newUser]}
+        }
+    })
+}
+
+
+export const unfollow = ({users, user, auth}) => async (dispatch) => {
+    let newUser = {
+        ...user, 
+        followers: DeleteData(user.followers, auth.user._id) 
+    }
+
+    dispatch({type: PROFILE_TYPES.UNFOLLOW, payload: newUser})
+
+    dispatch ({
+        type: GLOBALTYPES.AUTH, 
+        payload: {
+            ...auth,
+            user: { 
+                ...auth.user, 
+                following: DeleteData(auth.user.following, newUser._id) 
+            }
+        }
+    })
 }
 
 

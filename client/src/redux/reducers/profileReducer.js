@@ -1,5 +1,5 @@
-import { startSession } from "mongoose";
 import { PROFILE_TYPES } from "../actions/profileAction";
+import { EditData } from "../actions/globalTypes";
 
 const initialState = {
     loading: false,
@@ -20,8 +20,18 @@ const profileReducer = (state = initialState, action) => {
                     ...state,
                     users: [...state.users, action.payload.user]
                 };
-                default:
-                    return state;
+            case PROFILE_TYPES.FOLLOW:
+                return {
+                    ...state,
+                    users: EditData(state.users, action.payload._id, action.payload) 
+                };
+            case PROFILE_TYPES.UNFOLLOW:
+                return {
+                    ...state,
+                    users: EditData(state.users, action.payload._id, action.payload)
+                };
+            default:
+                return state;
     }
 }
 
