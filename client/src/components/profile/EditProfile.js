@@ -104,7 +104,7 @@ const EditProfile = ({ setOnEdit }) => {
           <label htmlFor="mobile">Mobile</label>
           <input
             type="text"
-            name="mobile\"
+            name="mobile"
             value={mobile}
             className="form-control"
             onChange={handleInput}
