@@ -17,3 +17,29 @@
 .status .statusBtn:hover{
     background: #ddd;
 }
+
+/* -------- POSTS -------- */
+.post .card{
+    box-shadow: 0 0 10px #ddd;
+}
+/* -------- POST CARD HEADER -------- */
+.post .card_header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px 25px;
+}
+.post .card_header .card_name{
+    transform: translateY();
+}
+.post .card_header .dropdown-menu{
+    position: absolute;
+    left: inherit !important;
+    right: 0;
+}
+.post .card_header .dropdown-item{
+    display: flex;
+    margin: 5px 0;
+}
+

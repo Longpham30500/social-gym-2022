@@ -4,7 +4,7 @@ import alert from './alertReducer'
 import theme from './themeReducer'
 import profile from './profileReducer'
 import status from './statusReducer'
-import homePost from './postReducer'
+import homePosts from './postReducer'
 
 
 
@@ -15,5 +15,5 @@ export default combineReducers({
     theme,
     profile,
     status,
-    homePost
+    homePosts
 })
