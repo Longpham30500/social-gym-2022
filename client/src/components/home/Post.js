@@ -8,10 +8,10 @@ const Posts = () => {
   const { homePosts } = useSelector(state => state)
 
   return (
-    <div className='posts'>
+    <div className=''>
         {
           homePosts.posts.map(post => (
-            <div key={post.id} className='card my-3'>
+            <div key={post.id} className=''>
               <CardHeader post={post} />
               <CardBody post={post} />
               <CardFooter post={post} />
