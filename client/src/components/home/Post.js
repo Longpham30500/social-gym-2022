@@ -1,21 +1,17 @@
   import React from 'react'
   import { useSelector } from 'react-redux'
-  import CardHeader from './post_card/CardHeader'
-  import CardBody from './post_card/CardBody'
-  import CardFooter from './post_card/CardFooter'
+  import PostCard from '../PostCard' 
+
+
 
 const Posts = () => {
   const { homePosts } = useSelector(state => state)
 
   return (
-    <div className=''>
+    <div className='posts'>
         {
           homePosts.posts.map(post => (
-            <div key={post.id} className=''>
-              <CardHeader post={post} />
-              <CardBody post={post} />
-              <CardFooter post={post} />
-            </div>
+            <PostCard key={post._id} post={post} />
           ))
         }
     </div>

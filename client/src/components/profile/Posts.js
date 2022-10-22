@@ -1,4 +1,5 @@
 import React from 'react'
+import PostCard from '../PostCard'
 
 export const Posts = () => {
   return (
