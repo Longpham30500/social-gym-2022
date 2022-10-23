@@ -19,17 +19,18 @@ const CardHeader = ({post}) => {
             <Avatar src={post.user.avatar} size="big-avatar" />
 
             <div className="card_name">
-                <h6 className='m-0'>
+                <h6 style={{margin: 0}} className='ml-2'>
                     <Link to={`/profile/${post.user._id}`} className="text-dark">
                         {post.user.username}
                     </Link>
                 </h6>
-                <small className='text-muted'>
+                <small className='text-muted ml-2'>
                     {moment(post.createAt).fromNow()}
                 </small>
             </div>
+        </div>
 
-            <div className='nav-item dropdown'>
+        <div className='nav-item dropdown'>
                 <span className='material-icons' id='moreLink' data-toggle='dropdown'>
                     more_horiz
                 </span>
@@ -51,7 +52,6 @@ const CardHeader = ({post}) => {
                         <span className='material-icons'>content_copy</span> Copy Link
                     </div>
                 </div>
-            </div>
         </div>
     </div>
   )

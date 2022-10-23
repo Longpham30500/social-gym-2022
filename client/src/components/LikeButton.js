@@ -1,7 +1,7 @@
 import React from 'react'
 import "boxicons";
 import { useSelector } from 'react-redux';
-
+import {HeartOutlined , HeartFilled} from '@ant-design/icons'
 
 const LikeButton = ({isLike, handleLike, handleUnLike}) => {
     const { theme } = useSelector(state => state)
@@ -10,9 +10,8 @@ const LikeButton = ({isLike, handleLike, handleUnLike}) => {
     <>
         {
             isLike
-            ? <box-icon name='heart' type='solid' onClick={handleUnLike} 
-            style={{filter: theme ? 'invert(1)' : 'invert(0)'}} />
-            : <box-icon style={{marginRight: 10}} name='heart' onClick={handleLike} />
+            ? <HeartFilled onClick={handleUnLike} style={{filter: theme ? 'invert(1)' : 'invert(0)', color: 'red' , fontSize:22}} />
+            : <HeartOutlined style={{fontSize:22}} name='heart' onClick={handleLike} />
         }
     </>
   )

@@ -21,31 +21,31 @@
 }
 
 /* -------- POSTS -------- */
-.post .card{
+.posts .card{
     box-shadow: 0 0 4px #ddd;
 }
 /* -------- POST CARD HEADER -------- */
-.post .card_header{
+.posts .card_header{
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    padding: 15px 25px;
+    padding: 15px 15px;
 }
-.post .card_header .card_name{
+.posts .card_header .card_name{
     transform: translateY();
 }
-.post .card_header .dropdown-menu{
+.posts .card_header .dropdown-menu{
     position: absolute;
     right: 0;
     left: inherit;
-
+    justify-content: flex-end;
 }
-.post .card_header .dropdown-item{
+.posts .card_header .dropdown-item{
     display: flex;
     margin: 5px 0;
 }
-/* -------- POST CARD BODY -------- */
+/* -------- posts CARD BODY -------- */
 .posts .card_body-content{
     padding: 0 25px;
     margin-top: 10px;
@@ -56,17 +56,17 @@
     cursor: pointer;
 }
 /* -------- POST CARD FOOTER -------- */
-.post .card_icon_menu{
+.posts .card_icon_menu{
     display: flex;
     justify-content: space-between;
     padding: 0 15px;
     cursor: pointer;
 }
-.post .card_icon_menu i{
+.posts .card_icon_menu i{
     font-size: 28px;
     margin: 10px;
 }
-.post .card_icon_menu img{
+.posts .card_icon_menu img{
     width: 28px;
     height: 28px;
     transform: translate(5px, -5px);

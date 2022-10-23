@@ -6,6 +6,7 @@ import {Row, Col, Space} from 'antd'
 import LikeButton from '../../LikeButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { likePost, unLikePost } from '../../../redux/actions/postAction';
+import {MessageOutlined, ShareAltOutlined} from '@ant-design/icons'
 
 const CardFooter = ({post}) => {
   const [isLike, setIsLike] = useState(false)
@@ -43,18 +44,17 @@ const CardFooter = ({post}) => {
   return (
     <div className='card_footer'>
         <div className='card_icon_menu'>
-          <div style={{marginTop: 10}}>
+          <div style={{marginTop:'5px', marginBottom:'10px'}}>
             <LikeButton
             isLike={isLike} 
             handleLike={handleLike}
             handleUnLike={handleUnLike}/>
-            <Link to={`/post/${post._id}`} className="text-dark">
-            <box-icon style={{marginRight: 10}}  name='message-rounded' />
+            <Link style={{marginLeft:'10px'}} to={`/post/${post._id}`} className="text-dark">
+            <MessageOutlined style={{fontSize: 22}} />
             </Link>
-            <box-icon name='send'></box-icon>
-            
+            <ShareAltOutlined style={{fontSize: 22, marginLeft:'9px'}} name='send'/>
           </div>
-          <div style={{display:'flex', justifyContent:'flex-end'}}>
+          <div style={{display:'flex', justifyContent:'flex-end', marginTop:'10px'}}>
             <box-icon name='bookmark' />
           </div>
           

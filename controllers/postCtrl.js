@@ -24,9 +24,7 @@ const postCtrl = {
     getPosts: async (req, res) => {
         try {
 
-            const posts = await Posts.find({
-                user: [...req.user.following, req.user._id]
-            }).sort('-createAt')
+            const posts = await Posts.find().sort('-createAt')
             .populate("user likes", "avatar username fullname")
             .populate({
                 path: "comments",

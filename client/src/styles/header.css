@@ -90,12 +90,12 @@ color: crimson;
 }
 
 /* -------- RESPONSIVE -------- */
-@media (max-width: 768px){
+@media (max-width: 500px){
     .header .menu{
         position: absolute;
         top: calc(100vh - 50px);
         left: 0;
-        width: 100%;
+        width: 500px;
         height: 50px;
         box-shadow: 0 0 10px #ddd;
         z-index: 2;
@@ -113,7 +113,7 @@ color: crimson;
         top: auto;
     }
     .header .search_form{
-        width: 100%;
+        width: 500px;
     }
     .header .logo {
         margin: auto;
