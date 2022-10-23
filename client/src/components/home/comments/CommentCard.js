@@ -65,7 +65,7 @@ const CommentCard = ({comment, post}) => {
 
             </div>
 
-            <div>
+            <div className='d-flex align-items-center' style={{cursor: 'pointer'}}> 
                 <LikeButton isLike={isLike} handleLike={handleLike} handleUnLike={handleUnLike} />
                 <CommentMenu post={post} comment={comment} auth={auth} />
             </div>
