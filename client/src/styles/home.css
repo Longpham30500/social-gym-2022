@@ -45,11 +45,11 @@
     display: flex;
     margin: 5px 0;
 }
-/* -------- posts CARD BODY -------- */
+/* -------- POSTS CARD BODY -------- */
 .posts .card_body-content{
     padding: 0 25px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 0px;
+    margin-bottom: 15px;
 }
 .posts .card_body-content .readMore{
     color: crimson;
