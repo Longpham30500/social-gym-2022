@@ -1,13 +1,14 @@
 import { GLOBALTYPES } from "./globalTypes"
 import { imageUpload } from '../../utils/imageUpload'
-import { postDataAPI, getDataAPI, patchDataAPI } from '../../utils/fetchData'
+import { postDataAPI, getDataAPI, patchDataAPI, deleteDataAPI } from '../../utils/fetchData'
 
 export const POST_TYPES = {
     CREATE_POST: 'CREATE_POST',
     LOADING_POST: 'LOADING_POST',
     GET_POSTS: 'GET_POSTS',
     UPDATE_POST: 'UPDATE_POST',
-    GET_POST: 'GET_POST'
+    GET_POST: 'GET_POST',
+    DELETE_POST: 'DELETE_POST'
 }
 
 
@@ -28,7 +29,7 @@ export const createPost = ({content, images, auth}) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
+            payload: {err: err.response.data.msg}
         })
     }
 }
@@ -48,7 +49,7 @@ export const getPosts = (token) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
+            payload: {err: err.response.data.msg}
         })
     }
 }
@@ -77,7 +78,7 @@ export const updatePost = ({content, images, auth, status}) => async (dispatch) 
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
+            payload: {err: err.response.data.msg}
         })
     }
 }
@@ -90,9 +91,12 @@ export const likePost = ({post, auth}) => async (dispatch) => {
     try {
         await patchDataAPI(`post/${post._id}/like`, null, auth.token)
     } catch (err) {
-        dispatch({
-            type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
+        console.log(err)
+        dispatch({ 
+            type: GLOBALTYPES.ALERT, 
+            payload: {
+                err: err.response.data.msg 
+            } 
         })
     }
 }
@@ -106,7 +110,7 @@ export const unLikePost = ({post, auth}) => async (dispatch) => {
     } catch (err) {
         dispatch({
             type: GLOBALTYPES.ALERT,
-            payload: {error: err.response.data.msg}
+            payload: {err: err.response.data.msg}
         })
     }
 }
@@ -119,8 +123,21 @@ export const getPost = ({detailPost, id, auth}) => async (dispatch) => {
         } catch (err) {
             dispatch({
                 type: GLOBALTYPES.ALERT,
-                payload: {error: err.response.data.msg}
+                payload: {err: err.response.data.msg}
             })
         }
+    }
+}
+
+export const deletePost = ({post, auth}) => async (dispatch) => {
+    dispatch({ type: POST_TYPES.DELETE_POST, payload: post })
+
+    try {
+        deleteDataAPI(`post/${post._id}`, auth.token)
+    } catch (err) {
+        dispatch({
+            type: GLOBALTYPES.ALERT,
+            payload: {err: err.response.data.msg}
+        })
     }
 }

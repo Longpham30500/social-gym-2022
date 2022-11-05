@@ -11,6 +11,7 @@ const CardFooter = ({post}) => {
   const [isLike, setIsLike] = useState(false)
   const [loadLike, setLoadLike] = useState(false)
 
+
   const { auth } = useSelector(state => state)
   const dispatch = useDispatch()
 
