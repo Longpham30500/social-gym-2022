@@ -93,6 +93,32 @@ const messageCtrl = {
       return res.status(500).json({ msg: err.message });
     }
   },
+
+  deleteConversation: async (req, res) => {
+    try {
+      const conver = await ModelConversation.findOneAndDelete({
+        $or: [
+          { recipients: [req.user._id, req.params.id] },
+          { recipients: [req.params.id, req.user._id] },
+        ],
+      });
+      await ModelMessages.deleteMany({ conversation: conver._id });
+      res.json({ msg: "Delete Success!" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
+  deleteMessages: async (req, res) => {
+    try {
+      await ModelMessages.findOneAndDelete({
+        _id: req.params.id,
+        sender: req.user._id,
+      });
+      res.json({ msg: "Delete Success!" });
+    } catch (err) {
+      return res.status(500).json({ msg: err.message });
+    }
+  },
 };
 
 module.exports = messageCtrl;
