@@ -13,13 +13,20 @@ const UserCardMessage = ({ member, msg }) => {
   if (!member) return <></>;
   return (
     member && (
-      <div className="show_user d-flex p-1 justify-content-between align-items-center">
-        <img src={member.avatar} alt="Avatar" className="avatarsmall" />
+      <div
+        style={{ cursor: "pointer", borderRadius: "15px", marginTop: "12px" }}
+        className="d-flex p-1 justify-content-between align-items-center"
+      >
+        <img
+          src={member.avatar}
+          alt="Avatar"
+          style={{ width: "37px", height: "37px", borderRadius: "50%" }}
+        />
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span className="text-dark mt-1">
             <Link
               to={`/infor/${member._id}`}
-              style={{ color: "black" ,textDecoration: "none", }}
+              style={{ color: "black", textDecoration: "none" }}
               className="d-flex align-items-center"
             >
               {member.name}
