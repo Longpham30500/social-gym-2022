@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef} from 'react'
 import { getData } from '../../utils/fetchData'
 import { useSelector, useDispatch } from 'react-redux'
-import CardMessage from './CardMessage';
+import UserCardMessage from './UserCardMessage';
 import { useHistory, useParams } from 'react-router-dom';
 import {addUser, getConversations} from '../../redux/actions/messageAction'
 
@@ -81,7 +81,7 @@ const LeftSide = () => {
                         searchUsers.map(user => (
                             <div key={user._id} className={`message_user ${isActive(user)}`} 
                             onClick={() => handleAddUser(user)}>
-                                <CardMessage member={user} />
+                                <UserCardMessage member={user} />
                             </div>
                         ))
                     }
@@ -92,7 +92,7 @@ const LeftSide = () => {
                             message.users.map(user => (
                                 <div key={user._id} className={`message_user ${isActive(user)}`}
                                 onClick={() => handleAddUser(user)}>
-                                    <CardMessage member={user} msg={true} />
+                                    <UserCardMessage member={user} msg={true} />
                                 </div>
                             ))
                         }
