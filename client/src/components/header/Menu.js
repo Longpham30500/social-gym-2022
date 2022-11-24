@@ -10,6 +10,7 @@ const Menu = () => {
     { label: "Message", icon: "near_me", path: "/message" },
     { label: "Discover", icon: "explore", path: "/discover" },
     { label: "Notify", icon: "favorite", path: "/notify" },
+    { label: "About", icon: "archive-fill", path: "/about" },
   ];
 
   const { auth, theme } = useSelector((state) => state);
