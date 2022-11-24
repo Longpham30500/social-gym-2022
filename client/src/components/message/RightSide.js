@@ -17,6 +17,10 @@ const RightSide = () => {
   const [media, setMedia] = useState([]);
   const [loadMedia, setLoadMedia] = useState(false);
 
+  const history = useHistory()
+  const [page,setPage] = useState(0)
+  const pageEnd = useRef()
+
   const refMessage = useRef();
 
   useEffect(() => {
