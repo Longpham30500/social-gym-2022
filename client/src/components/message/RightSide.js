@@ -3,11 +3,13 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";
-import { addMessage } from "../../redux/actions/messageAction";
+import { addMessage, deleteConversation, getMessages } from "../../redux/actions/messageAction";
 import { imageUpload } from "../../utils/imageUpload";
 import { imageShow, videoShow } from "../../utils/mediaShow";
 import UserCardMessage from "./UserCardMessage";
-
+import {
+  DeleteOutlined,
+} from '@ant-design/icons';
 const RightSide = () => {
   const { auth, message } = useSelector((state) => state);
   const { id } = useParams();
@@ -17,9 +19,9 @@ const RightSide = () => {
   const [media, setMedia] = useState([]);
   const [loadMedia, setLoadMedia] = useState(false);
 
-  const history = useHistory()
-  const [page,setPage] = useState(0)
-  const pageEnd = useRef()
+  const history = useHistory();
+  const [page, setPage] = useState(0);
+  const pageEnd = useRef();
 
   const refMessage = useRef();
 
@@ -58,7 +60,7 @@ const RightSide = () => {
     if (media.length > 0) newArr = await imageUpload(media);
 
     const msg = {
-      sender: auth.userHeader._id,
+      sender: auth.user._id,
       recipient: id,
       text,
       media: newArr,
@@ -76,15 +78,87 @@ const RightSide = () => {
     setMedia(newArr);
   };
 
+  const deleteConversations = () => {
+    dispatch(deleteConversation({ auth, id }));
+    return history("/message");
+  };
+  useEffect(() => {
+    if (id) {
+      const getMessagesData = async () => {
+        await dispatch(getMessages({ auth, id }));
+
+        if (refMessage.current) {
+          refMessage.current.scrollIntoView({
+            behavior: "smooth",
+            block: "end",
+          });
+        }
+      };
+      getMessagesData();
+    }
+  }, [id, dispatch, auth]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setPage((p) => p + 1);
+        }
+      },
+      {
+        threshold: 0.1,
+      }
+    );
+    observer.observe(pageEnd.current);
+  }, [setPage]);
+
+  useEffect(() => {
+    if (message.resultData >= (page - 1) * 9 && page > 1) {
+      dispatch(getMessages({ auth, id, page }));
+    }
+  }, [message.resultData, page, id, auth, dispatch]);
+
+  useEffect(() => {
+    if (refMessage.current) {
+      refMessage.current.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [text]);
+
   return (
     <div>
       <div className="message_header">
         {user.length !== 0 && (
           <>
             <UserCardMessage member={user}></UserCardMessage>
+            <DeleteOutlined onClick={deleteConversations} />
           </>
         )}
       </div>
+
+      <div className='chat_container'
+      style={{height: media.length > 0 ? 'calc(100% - 180px)':''}}
+    >
+      <div className='chat_display' ref={refMessage}>
+        <button ref={pageEnd} style={{marginTop: '-25px', opacity: 0}}>Load Message</button>
+        {
+          message.data.map((msg,index) => (
+            <div key={index}>
+              {
+                msg.sender !== auth.user._id &&
+                <div className='chat_row other_message'>
+                </div>
+              }  
+              {
+                msg.sender === auth.user._id &&
+                <div className='chat_row you_message'>
+                </div>
+              }
+            </div>
+          ))
+        }
+        </div>
+    </div>
+
 
       <div
         className="show_media"

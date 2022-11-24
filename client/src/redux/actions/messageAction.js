@@ -33,7 +33,7 @@ export const getConversations = ({auth, page = 1}) => async (dispatch) =>{
         let newArr = [];
         res.data.conversations.forEach(item =>{
             item.recipients.forEach(cv => {
-                if(cv._id !== auth.userHeader._id){
+                if(cv._id !== auth.user._id){
                     newArr.push({...cv, text: item.text, media: item.media})
                 }
             })
