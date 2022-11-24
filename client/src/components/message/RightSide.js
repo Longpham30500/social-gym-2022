@@ -8,13 +8,13 @@ import {
   deleteConversation,
   getMessages,
 } from "../../redux/actions/messageAction";
-import { imageUpload } from "../../utils/imageUpload";
 import { imageShow, videoShow } from "../../utils/mediaShow";
 import UserCardMessage from "./UserCardMessage";
 import { DeleteOutlined } from "@ant-design/icons";
 import DisplayMessage from "./DisplayMessage";
+import { imageUpload } from "../../utils/imageUpload";
 const RightSide = () => {
-  const { auth, message } = useSelector((state) => state);
+  const { auth, message, socket } = useSelector((state) => state);
   const { id } = useParams();
   const dispatch = useDispatch();
   const [text, setText] = useState("");
@@ -70,7 +70,7 @@ const RightSide = () => {
       createdAt: new Date().toISOString(),
     };
     setLoadMedia(false);
-    await dispatch(addMessage({ msg, auth }));
+    await dispatch(addMessage({ msg, auth, socket }));
     if (refMessage.current) {
       refMessage.current.scrollIntoView({ behavior: "smooth", block: "end" });
     }
