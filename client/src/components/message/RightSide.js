@@ -3,13 +3,16 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { GLOBALTYPES } from "../../redux/actions/globalTypes";
-import { addMessage, deleteConversation, getMessages } from "../../redux/actions/messageAction";
+import {
+  addMessage,
+  deleteConversation,
+  getMessages,
+} from "../../redux/actions/messageAction";
 import { imageUpload } from "../../utils/imageUpload";
 import { imageShow, videoShow } from "../../utils/mediaShow";
 import UserCardMessage from "./UserCardMessage";
-import {
-  DeleteOutlined,
-} from '@ant-design/icons';
+import { DeleteOutlined } from "@ant-design/icons";
+import DisplayMessage from "./DisplayMessage";
 const RightSide = () => {
   const { auth, message } = useSelector((state) => state);
   const { id } = useParams();
@@ -135,30 +138,30 @@ const RightSide = () => {
         )}
       </div>
 
-      <div className='chat_container'
-      style={{height: media.length > 0 ? 'calc(100% - 180px)':''}}
-    >
-      <div className='chat_display' ref={refMessage}>
-        <button ref={pageEnd} style={{marginTop: '-25px', opacity: 0}}>Load Message</button>
-        {
-          message.data.map((msg,index) => (
+      <div
+        className="chat_container"
+        style={{ height: media.length > 0 ? "calc(100% - 180px)" : "" }}
+      >
+        <div className="chat_display" ref={refMessage}>
+          <button ref={pageEnd} style={{ marginTop: "-25px", opacity: 0 }}>
+            Load Message
+          </button>
+          {message.data.map((msg, index) => (
             <div key={index}>
-              {
-                msg.sender !== auth.user._id &&
-                <div className='chat_row other_message'>
+              {msg.sender !== auth.user._id && (
+                <div className="chat_row other_message">
+                  <DisplayMessage member={user} msg={msg} />
                 </div>
-              }  
-              {
-                msg.sender === auth.user._id &&
-                <div className='chat_row you_message'>
+              )}
+              {msg.sender === auth.user._id && (
+                <div className="chat_row you_message">
+                  <DisplayMessage member={user} msg={msg} />
                 </div>
-              }
+              )}
             </div>
-          ))
-        }
+          ))}
         </div>
-    </div>
-
+      </div>
 
       <div
         className="show_media"
