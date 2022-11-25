@@ -22,5 +22,4 @@ export default combineReducers({
     detailPost,
     message,
     socket,
-
 })

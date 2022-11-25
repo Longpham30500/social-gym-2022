@@ -27,13 +27,13 @@ const Posts = () => {
   return (
     <>
         <Stack alignItems="center" mt="37px" justifyContent="center" p="20px">
-      <Typography color="#FBFAF3" fontWeight={700} sx={{ fontSize: { lg: '44px', xs: '30px' } }} mb="49px" textAlign="center">
+      <Typography color="black" fontWeight={700} sx={{ fontSize: { lg: '44px', xs: '30px' } }} mb="49px" textAlign="center">
         Search All Post <br /> TITLE POST
       </Typography>
       <Box position="relative" mb="72px">
         <TextField
           height="76px"
-          sx={{ input: { fontWeight: '700', border: 'none', borderRadius: '4px' }, width: { lg: '1170px', xs: '350px' }, backgroundColor: '#fff', borderRadius: '40px' }}
+          sx={{ input: { fontWeight: '700', border: 'none', borderRadius: '4px' }, width: '100%', backgroundColor: '#fff', borderRadius: '40px' }}
           value={search}
           onChange={(e) => searchItems(e.target.value.toLowerCase())}
           placeholder="Search Exercises"

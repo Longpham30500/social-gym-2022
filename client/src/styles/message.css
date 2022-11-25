@@ -123,7 +123,7 @@
 
 
 .chat_container{
-    height: calc(100% - 115px);
+    max-height: 520px;
     width: 100%;
     padding: 0 10px;
     overflow-y: auto;

@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Stack, Typography } from '@mui/material';
 
 const About = () => {
-  return <Box>
+  return <Box style={{background: 'black'}}>
   <Box sx={{ mt: { lg: '212px', xs: '70px' }, ml: { sm: '50px' } }} position="relative" p="20px">
     <Typography color="#FFBE0B" fontWeight="600" fontSize="26px">SOCIAL-GYM</Typography>
     <Typography color="#FBFAF3" fontWeight={700} sx={{ fontSize: { lg: '44px', xs: '40px' } }} mb="23px" mt="30px">

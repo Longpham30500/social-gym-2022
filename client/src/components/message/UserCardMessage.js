@@ -25,16 +25,16 @@ const UserCardMessage = ({ member, msg }) => {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <span className="text-dark mt-1">
             <Link
-              to={`/infor/${member._id}`}
+              to={`/profile/${member._id}`}
               style={{ color: "black", textDecoration: "none" }}
               className="d-flex align-items-center"
             >
-              {member.name}
+              {member.fullname}
             </Link>
           </span>
 
           <small style={{ opacity: 0.6 }}>
-            {msg ? showMsg(member) : member.name}
+            {msg ? showMsg(member) : member.fullname}
           </small>
         </div>
 

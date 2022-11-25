@@ -83,7 +83,7 @@ const RightSide = () => {
 
   const deleteConversations = () => {
     dispatch(deleteConversation({ auth, id }));
-    return history("/message");
+    return history.push("/message");
   };
   useEffect(() => {
     if (id) {

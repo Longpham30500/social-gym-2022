@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef} from 'react'
-import { getData } from '../../utils/fetchData'
 import { useSelector, useDispatch } from 'react-redux'
 import UserCardMessage from './UserCardMessage';
 import { useHistory, useParams } from 'react-router-dom';
 import {addUser, getConversations} from '../../redux/actions/messageAction'
+import { getDataAPI } from '../../utils/fetchData';
 
 
 const LeftSide = () => {
@@ -27,15 +27,15 @@ const LeftSide = () => {
         setSearch('')
         setSearchUsers([])
         dispatch(addUser({user, message}))
-        return history(`/message/${user._id}`)
+        return history.push(`/message/${user._id}`)
     }
 
     const handleSearch = async (e) => {
         e.preventDefault()
         if(!search) return setSearch([]);
         try {
-            const res = await getData(`search?name=${search}`, auth.token)
-            setSearchUsers(res.data.user)
+            const res = await getDataAPI(`search?username=${search}`, auth.token)
+            setSearchUsers(res.data.users)
         } catch (err) {
             console.log(err)
         }

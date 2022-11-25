@@ -1,16 +1,15 @@
 import React, {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import { MESS_TYPES } from './src/redux/actions/messageAction'
+import { MESS_TYPES } from './redux/actions/messageAction'
 
 const SocketClient = () => {
     const {auth, socket} = useSelector(state => state)
     const dispatch = useDispatch()
 
+    console.log(auth)
     useEffect(() => {
         socket.emit('addUser', auth.user._id)
     }, [socket, auth.user._id])
-    
-  
     //Chat
     useEffect(() => {
       socket.on('createMessageToClient', message => {
