@@ -128,11 +128,11 @@ const RightSide = () => {
   }, [text]);
 
   return (
-    <div>
+    <>
       <div className="message_header">
         {user.length !== 0 && (
           <>
-            <UserCardMessage member={user}></UserCardMessage>
+            <UserCardMessage member={user}/>
             <DeleteOutlined onClick={deleteConversations} />
           </>
         )}
@@ -140,7 +140,7 @@ const RightSide = () => {
 
       <div
         className="chat_container"
-        style={{ height: media.length > 0 ? "calc(100% - 180px)" : "" }}
+        style={{ height: media.length > 0 ? "calc(100% - 180px)" : "100%" }}
       >
         <div className="chat_display" ref={refMessage}>
           <button ref={pageEnd} style={{ marginTop: "-25px", opacity: 0 }}>
@@ -204,7 +204,7 @@ const RightSide = () => {
           Send
         </button>
       </form>
-    </div>
+    </>
   );
 };
 

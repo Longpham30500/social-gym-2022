@@ -86,7 +86,7 @@ const messageCtrl = {
 
       const conversations = await features.query
         .sort("-updatedAt")
-        .populate("recipients", "avatar name");
+        .populate("recipients", "avatar username fullname");
 
       res.json({ conversations, result: conversations.length });
     } catch (err) {

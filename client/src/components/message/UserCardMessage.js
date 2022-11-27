@@ -14,7 +14,7 @@ const UserCardMessage = ({ member, msg }) => {
   return (
     member && (
       <div
-        style={{ cursor: "pointer", borderRadius: "15px", marginTop: "12px" }}
+        style={{ cursor: "pointer", borderRadius: "15px"}}
         className="d-flex p-1 justify-content-between align-items-center"
       >
         <img
