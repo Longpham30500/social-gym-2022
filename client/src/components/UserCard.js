@@ -18,7 +18,7 @@ const UserCard = ({children, user, border, handleClose, setShowFollowers, setSho
 
           <Avatar src={user.avatar} size="big-avatar" />
           
-          <div className="m1-1" style={{ transform: "translateY(-2px)" }}>
+          <div className="ml-3" style={{ transform: "translateY(-2px)" }}>
             <span className="d-block">{user.username}</span>
             <small style={{ opacity: 0.7 }}>{user.fullname}</small>
           </div>

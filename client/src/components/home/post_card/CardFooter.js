@@ -6,13 +6,17 @@ import LikeButton from '../../LikeButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { likePost, unLikePost } from '../../../redux/actions/postAction';
 import {MessageOutlined, ShareAltOutlined} from '@ant-design/icons'
+import ModalShare from '../modalShare';
+import { BASE_URL } from '../../../utils/config';
+import { addMessage } from '../../../redux/actions/messageAction';
 
 const CardFooter = ({post}) => {
   const [isLike, setIsLike] = useState(false)
   const [loadLike, setLoadLike] = useState(false)
+  const [userData, setUserData] = useState([])
+  const [showFollow, setShowFollow] = useState(false)
 
-
-  const { auth } = useSelector(state => state)
+  const { auth, profile, socket } = useSelector(state => state)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -40,6 +44,25 @@ const CardFooter = ({post}) => {
     setLoadLike(false)
   }
 
+    // ${BASE_URL}/post/${post._id}
+  const sharePost = async (id, e) => {
+    e.preventDefault()
+    const msg = {
+      sender: auth.user._id,
+      recipient: id,
+      text: `${BASE_URL}/post/${post._id}`,
+      createdAt: new Date().toISOString(),
+      media: [],
+    };
+    await dispatch(addMessage({ msg, auth, socket }));
+  };
+
+  useEffect(() => {
+        const newData = auth?.user?.followers
+        setUserData(newData)
+}, [ auth, dispatch, profile.users])
+
+
 
   return (
     <div className='card_footer'>
@@ -52,7 +75,8 @@ const CardFooter = ({post}) => {
             <Link style={{marginLeft:'10px'}} to={`/post/${post._id}`} className="text-dark">
             <MessageOutlined style={{fontSize: 22}} />
             </Link>
-            <ShareAltOutlined style={{fontSize: 22, marginLeft:'9px'}} name='send'/>
+            {showFollow === true && <ModalShare users={userData} setShowFollow={setShowFollow} sharePost={sharePost}/>}
+            <ShareAltOutlined onClick={() => setShowFollow(true)} style={{fontSize: 22, marginLeft:'9px'}} name='send'/>
           </div>
           <div style={{display:'flex', justifyContent:'flex-end', marginTop:'10px'}}>
             <box-icon name='bookmark' />

@@ -22,7 +22,7 @@ const Register = () => {
   const [typeCfPass, setTypeCfPass] = useState(false);
 
   useEffect(() => {
-    if (auth.token) history.push("/");
+    if (auth.token) history.push("/about");
   }, [auth.token, history]);
 
   const handleChangeInput = (e) => {

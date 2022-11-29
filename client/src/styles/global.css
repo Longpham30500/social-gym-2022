@@ -24,10 +24,9 @@ code {
 .App {
   width: 100%;
   min-height: 100vh;
-  background: white;
+  background:#ffffff;
 }
 .main {
-  max-width: 1000px;
   width: 100%;
   margin: auto;
 }
@@ -65,6 +64,10 @@ img {
 
 /* -------- MESSAGE -------- */
 @import url("./message.css");
+
+
+@import 'antd/dist/antd.css';
+
 
 .mode{
   width: 100%;

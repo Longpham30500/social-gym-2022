@@ -5,7 +5,6 @@
     padding: 20px;
     border-radius: 5px;
     border: 1px solid rbg(0, 0, 0, .125);
-
 }
 .status .statusBtn{
     background: #f1f1f1;
@@ -21,7 +20,15 @@
 }
 
 /* -------- POSTS -------- */
+.posts {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 13% 0 13%
+}
+
 .posts .card{
+    width: 60%;
     box-shadow: 0 0 4px #ddd;
 }
 /* -------- POST CARD HEADER -------- */
@@ -72,3 +79,16 @@
     transform: translate(5px, -5px);
     opacity: 0.9;
 }
+@media (max-width: 500px){
+.posts .card{
+    width: 100%;
+    box-shadow: 0 0 4px #ddd;
+}
+}
+
+@media (max-width: 1000px){
+    .posts .card{
+        width: 90%;
+        box-shadow: 0 0 4px #ddd;
+    }
+    }

@@ -6,7 +6,6 @@ const SocketClient = () => {
     const {auth, socket} = useSelector(state => state)
     const dispatch = useDispatch()
 
-    console.log(auth)
     useEffect(() => {
         socket.emit('addUser', auth.user._id)
     }, [socket, auth.user._id])

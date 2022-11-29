@@ -155,7 +155,7 @@ const RightSide = () => {
               )}
               {msg.sender === auth.user._id && (
                 <div className="chat_row you_message">
-                  <DisplayMessage member={user} msg={msg} />
+                  <DisplayMessage member={auth.user} msg={msg} />
                 </div>
               )}
             </div>

@@ -10,7 +10,7 @@ const Home = () => {
 
   return (
     <div className="home row mx-0">
-      <div className="col-md-8">
+      <div className="col-md-12">
         <Status />
 
         {

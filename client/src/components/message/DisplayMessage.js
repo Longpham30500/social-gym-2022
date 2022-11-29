@@ -29,8 +29,8 @@ const DisplayMessage = ({ member, msg }) => {
             Delete
           </button>
         )}
-        {msg.text && <div className="chat_text">{msg.text}</div>}
-        {msg.media.map((item, index) => (
+        {msg?.text && <div className="chat_text">{msg?.text || ''}</div>}
+        {msg?.media?.map((item, index) => (
           <div key={index}>
             {item.url.match(/video/i)
               ? videoShow(item.url)

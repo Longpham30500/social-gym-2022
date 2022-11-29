@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const SocketServer = require("./socketServer")
+const path = require('path')
 
 const app = express();
 app.use(express.json());
@@ -37,6 +38,13 @@ mongoose
   .catch((err) => {
     console.error("Error connecting to Mongo", err);
   });
+
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
+  })
+}
 
 const port = process.env.PORT || 8080;
 http.listen(port, () => {

@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const UserCardMessage = ({ member, msg }) => {
+  
   const showMsg = (member) => {
     return (
       <div>
-        <div>{member.text}</div>
-        {member.media.length > 0 && <div>{member.media.length} Media</div>}
+        <div>{member?.text || ''}</div>
+        {member?.media?.length > 0 && <div>{member.media.length} Media</div>}
       </div>
     );
   };
