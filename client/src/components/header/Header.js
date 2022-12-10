@@ -11,7 +11,7 @@ const Header = () => {
       >
         <Link to="/" className="logo">
           <h1 className="navbar-brand text-uppercase"
-          onClick={() => window.scrollTo({top: 0})}>
+          onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
             Fitness Social
           </h1>
         </Link>

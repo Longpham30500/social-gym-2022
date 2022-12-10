@@ -46,22 +46,6 @@ const LeftSide = () => {
         dispatch(getConversations({auth}))
     },[dispatch,auth,message.firstLoad])
 
-    useEffect(() => {
-        const observer = new IntersectionObserver(entries => {
-          if(entries[0].isIntersecting){
-            setPage(p => p + 1)
-          }
-        },{
-          threshold: 0.1
-        })
-        observer.observe(pageEnd.current)
-      },[setPage])
-      
-      useEffect(() => {
-        if(message.resultUsers >= (page - 1) * 9 && page > 1){
-          dispatch(getConversations({auth, page}))
-        }
-      },[message.resultUsers, page , auth, dispatch])
 
   return (
     <>

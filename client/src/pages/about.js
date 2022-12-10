@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Stack, Typography } from '@mui/material';
 import { useSelector } from "react-redux";
-
 const About = () => {
   const {theme} = useSelector(state => state)
   return <Box style={{background: ''}}>
@@ -25,7 +24,7 @@ const About = () => {
 
   <Box style={{filter: `${ theme ? 'invert(1)' : 'invert(0)'}`}} mt="80px">
     <Stack gap="40px" sx={{ alignItems: 'center' }} flexWrap="wrap" px="40px" pt="24px">
-      <img src="../../public/fitness-icon-01.jpg" alt="logo" style={{ width: '200px', height: '41px' }} />
+      <img src='https://res.cloudinary.com/longpham352/image/upload/v1665725158/social-gym-2022/csvio0on4khajmwun8v0.png' alt="logo" style={{ width: '200px'}} />
     </Stack>
     <Typography style={{color: `${ theme ? 'white' : 'black'}`,}} variant="h5" sx={{ fontSize: { lg: '28px', xs: '20px' } }} mt="41px" textAlign="center" pb="40px">Made with &#128155; by LONG PHAM</Typography>
   </Box>

@@ -11,7 +11,7 @@ const CardHeader = ({post}) => {
     const { auth } = useSelector(state => state)
     const dispatch = useDispatch()
 
-    const history = useHistory
+    const history = useHistory()
 
     const handleEditPost = () => {
         dispatch({ type: GLOBALTYPES.STATUS, payload: {...post, onEdit: true }})

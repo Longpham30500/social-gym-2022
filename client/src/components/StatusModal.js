@@ -107,7 +107,7 @@ const StatusModal = () => {
     <div className="status_modal">
       <form onSubmit={handleSubmit}>
         <div className="status_header">
-          <h5 className="m-0">Create Post</h5>
+          <h5 className="m-0">{status?.onEdit ? 'Edit Post' : 'Create Post'}</h5>
           <span
             onClick={() =>
               dispatch({

@@ -11,8 +11,13 @@ const Comments = ({post}) => {
 
   useEffect(() => {
     const newCm = post.comments.filter(cm => !cm.reply)
-    setComments(newCm)
-    setShowComments(newCm.slice(newCm.length - next))
+    if(next == 2) {
+      setComments(newCm)
+      setShowComments(newCm.slice(newCm.length - next))
+    } else {
+      setComments(newCm)
+      setShowComments(newCm)
+    }
 },[post.comments, next])
 
   useEffect(() => {
@@ -30,14 +35,13 @@ const Comments = ({post}) => {
         }
 
         {
-          comments.length - next > 0
+          next == 2
           ? <div className='p-2 border-top'
           style={{cursor: 'pointer', color: 'crimson'}}
-          onClick={() => setNext(next + 10)}>
+          onClick={() => setNext(comments.length)}>
             See more comments...
           </div>
-
-          :  comments.length > 2 &&
+          :  
           <div className='p-2 border-top'
           style={{cursor: 'pointer', color: 'crimson'}}
           onClick={() => setNext(2)}>

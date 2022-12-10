@@ -13,7 +13,7 @@ const Search = () => {
   const dispatch = useDispatch();
   const [load, setLoad] = useState(false)
 
- 
+
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -50,9 +50,11 @@ const Search = () => {
         }
       />
 
-      <div className="search_icon" style={{ opacity: search ? 0 : 0.3 }}>
-        <span className="material-icons">search</span>
-        <span>Enter to Search</span>
+      <div className="search_icon" style={{ opacity: search ? 0 : 0.3}}>
+        <div>
+          <span className="material-icons">search</span>
+          <span>Enter to Search</span>
+        </div>
       </div>
 
       <div
@@ -63,18 +65,18 @@ const Search = () => {
         &times;
       </div>
 
-      <button type="submit" style={{display: 'none'}}>Search</button>
-      
-      { load && <img className="loading" src={LoadIcon} alt="loading" /> }
+      <button type="submit" style={{ display: 'none' }}>Search</button>
+
+      {load && <img className="loading" src={LoadIcon} alt="loading" />}
       <div className="users">
         {search && users.map(user => (
-              <UserCard 
-              key={user._id} 
-              user={user} 
-              border="border"
-              handleClose={handleClose}
-              />
-          ))}
+          <UserCard
+            key={user._id}
+            user={user}
+            border="border"
+            handleClose={handleClose}
+          />
+        ))}
       </div>
     </form>
   );
